@@ -60,7 +60,7 @@ This is a conversion of a [past MakeSchool tutorial I completed](https://github.
 
 - Use ResponseEntity for all routes?
 - Better exception handling / Custom exceptions
-- The validation for event put requests needs improvement - need to check if takesPlaceOn for valid date 
+- The validation for event put requests needs improvement - need to check takesPlaceOn is a valid date 
 - Testing
 
 ## Useful Resources
@@ -71,7 +71,7 @@ This is a conversion of a [past MakeSchool tutorial I completed](https://github.
 - [YouTube](https://www.youtube.com/watch?v=j8J9Cx8pEsI) - Build REST API with Spring Boot and JPA [2021] - 25 Create timestamps by JPA
 - [YouTube](https://www.youtube.com/watch?v=OMmxqc9zdSg) - Spring Boot For Beginners - One-To-Many in Spring Data
 - [Baeldung](https://www.baeldung.com/circular-dependencies-in-spring) - circular dependencies
-- [Stack Overflow](https://stackoverflow.com/questions/47640698/com-fasterxml-jackson-databind-ser-beanserializer-serialize-spring-jpa)
+- [Stack Overflow](https://stackoverflow.com/questions/47640698/com-fasterxml-jackson-databind-ser-beanserializer-serialize-spring-jpa) - fasterxml jackson stack overflow
 - [Github](https://github.com/teddysmithdev/pokemon-review-springboot) - pokemon review springboot
 - [Stack Overflow](https://stackoverflow.com/questions/64246525/onetomany-column-not-showing) - one to many column not showing
 - [Stack Overflow](https://stackoverflow.com/questions/61993704/stack-overflow-error-for-hibernate-one-to-one-mapping-with-spring-data-jpa) - stack overflow for hibernate one to one mapping
