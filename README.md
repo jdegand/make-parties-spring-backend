@@ -49,19 +49,25 @@ This is a conversion of a [past MakeSchool tutorial I completed](https://github.
 - Could add a third table for the list of rsvps -> @JoinTable
 - It can be annoying to use Integer in place of Long for ids as it can require extra work i.e. overriding method signatures
 - JPARepository works best with Long ids
-- Using Builder on an entity with a mapping warns - "@Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final." -> Need to investigate further for a solution
+- Using Builder on an entity with a mapping warns - "@Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final." -> Because I set rsvps to an empty list I needed to use @Builder.Default annotation on rsvps 
 - Added takesPlaceOn to Event Entity (stretch challenge in original MakeSchool tutorial)
 - Added timestamps as well but I did not use them in the frontend
 - Added validation after I had the frontend working with the backend
 - The tutorial did not feature validation 
 - Kept the validation fairly minimal -  a few required properties and date validation for takesPlaceOn
+- In the entities, I used {entity}Id instead of just id.  This can be annoying and debatable if this is a good practice or not. 
+- Starting writing tests for the repository layer first then moved to the service layer.  
+- I am not sure if it is truly necessary to test methods that just use JPARepository methods - seems redundant - this project didn't use any custom queries.
+- However, the repository tests are easy to write.
+- Had trouble with using Optional and thenReturn together in the EventService Tests - the commented out code seems like it should work but maybe I missed something 
+- You need to use assertAll() to handle void methods ie delete.
 
 ## Continued Development
 
 - Use ResponseEntity for all routes?
 - Better exception handling / Custom exceptions
 - The validation for event put requests needs improvement - need to check takesPlaceOn is a valid date 
-- Testing
+- fetchEventById in the event service implementation could probably be refactored and done in a better way
 
 ## Useful Resources
 
@@ -84,3 +90,8 @@ This is a conversion of a [past MakeSchool tutorial I completed](https://github.
 - [Stack Overflow](https://stackoverflow.com/questions/5478328/in-which-case-do-you-use-the-jpa-jointable-annotation) - jpa jointable annotation
 - [Baeldung](https://www.baeldung.com/java-string-valid-date) - java string valid date
 - [How to Do in Java](https://howtodoinjava.com/java/date-time/date-validation/) - date validation
+- [Baeldung](https://www.baeldung.com/lombok-builder-default-value) - lombok builder default value
+- [Stack Overflow](https://stackoverflow.com/questions/46057360/how-to-suppress-lombok-warnings) - suppress lombok warnings
+- [YouTube](https://www.youtube.com/watch?v=jqwZthuBmZY&list=PL82C6-O4XrHcg8sNwpoDDhcxUCbFy855E&index=1) - Spring Boot Unit Testing Tutorial (W/ Mockito)
+- [Stack Overflow](https://stackoverflow.com/questions/30946167/mockito-error-with-method-that-returns-optionalt) - mockito error with method that returns optional
+- [Baeldung](https://www.baeldung.com/java-init-list-one-line) - java init list one line

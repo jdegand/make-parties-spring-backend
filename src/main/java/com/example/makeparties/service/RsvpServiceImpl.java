@@ -1,5 +1,7 @@
 package com.example.makeparties.service;
 
+//import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,11 @@ public class RsvpServiceImpl implements RsvpService {
         Event event = eventRepository.findById(EventId).orElseThrow();
      
         rsvp.setEvent(event);
+
+        /*
+        Optional<Event> event = eventRepository.findById(EventId); //.orElseThrow();
+        rsvp.setEvent(event.get()); 
+        */
 
         Rsvp completeRsvp = rsvpRepository.save(rsvp);
 
