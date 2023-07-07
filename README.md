@@ -53,14 +53,15 @@ This is a conversion of a [past MakeSchool tutorial I completed](https://github.
 - Added takesPlaceOn to Event Entity (stretch challenge in original MakeSchool tutorial)
 - Added timestamps as well but I did not use them in the frontend
 - Added validation after I had the frontend working with the backend
-- The tutorial did not feature validation 
-- Kept the validation fairly minimal -  a few required properties and date validation for takesPlaceOn
+- The tutorial did not feature any validation.
+- I kept the validation fairly minimal -  a few required properties and date validation for takesPlaceOn.
 - In the entities, I used {entity}Id instead of just id.  This can be annoying and debatable if this is a good practice or not. 
-- Starting writing tests for the repository layer first then moved to the service layer.  
+- Starting writing tests for the repository layer first then moved to the service layer and then finally the controller layer.  
 - I am not sure if it is truly necessary to test methods that just use JPARepository methods - seems redundant - this project didn't use any custom queries.
 - However, the repository tests are easy to write.
-- Had trouble with using Optional and thenReturn together in the EventService Tests - the commented out code seems like it should work but maybe I missed something 
+- Had trouble with using Optional and thenReturn together in the EventService Tests - the commented out code seems like it should work but maybe I missed something - problem may the return type of the function - ie Optional<Event> vs Event
 - You need to use assertAll() to handle void methods ie delete.
+- Not using response entities does create problems when testing error states in the controller layer because requests will fail without giving the appropriate status code.  You have to write more checks to test routes versus stopping after isBadRequest() etc. 
 
 ## Continued Development
 
@@ -95,3 +96,4 @@ This is a conversion of a [past MakeSchool tutorial I completed](https://github.
 - [YouTube](https://www.youtube.com/watch?v=jqwZthuBmZY&list=PL82C6-O4XrHcg8sNwpoDDhcxUCbFy855E&index=1) - Spring Boot Unit Testing Tutorial (W/ Mockito)
 - [Stack Overflow](https://stackoverflow.com/questions/30946167/mockito-error-with-method-that-returns-optionalt) - mockito error with method that returns optional
 - [Baeldung](https://www.baeldung.com/java-init-list-one-line) - java init list one line
+- [YouTube](https://www.youtube.com/watch?v=XASyDbfQYaw) - Write Unit Test Case For Controller Layer using Junit & Mockito | @WebMvcTest |MockMvc

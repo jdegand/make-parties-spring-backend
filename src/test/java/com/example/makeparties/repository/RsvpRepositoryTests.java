@@ -36,8 +36,7 @@ public class RsvpRepositoryTests {
         rsvpRepository.save(rsvp1);
 
         rsvpRepository.save(rsvp2);
-
-
+        
         Rsvp rsvpReturned = rsvpRepository.findById(rsvp2.getRsvpId()).get();
 
         Assertions.assertThat(rsvpReturned).isNotNull();
