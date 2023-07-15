@@ -59,7 +59,7 @@ This is a conversion of a [past MakeSchool tutorial I completed](https://github.
 - Starting writing tests for the repository layer first then moved to the service layer and then finally the controller layer.  
 - I am not sure if it is truly necessary to test methods that just use JPARepository methods - seems redundant - this project didn't use any custom queries.
 - However, the repository tests are easy to write.
-- Had trouble with using Optional and thenReturn together in the EventService Tests - the commented out code seems like it should work but maybe I missed something - problem may the return type of the function - ie Optional<Event> vs Event
+- Had trouble with using Optional and thenReturn together in the EventService Tests - the commented out code seems like it should work but maybe I missed something - could be the return type of the function - ie Optional<Event> vs Event
 - You need to use assertAll() to handle void methods ie delete.
 - Not using response entities does create problems when testing error states in the controller layer because requests will fail without giving the appropriate status code.  You have to write more checks to test routes versus stopping after isBadRequest() etc. 
 

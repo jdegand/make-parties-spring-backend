@@ -66,7 +66,7 @@ public class EventControllerTests {
                 mockMvc.perform(get("/events/{id}", 1)
                                 .contentType(MediaType.APPLICATION_JSON))
                                 // .content(objectMapper.writeValueAsString(event))) - could leave this?
-                                .andExpect(status().isOk()) // can't really different request results with status codes
+                                .andExpect(status().isOk()) // can't really differentiate request results with status codes
                                                             // bc I didn't use
                                                             // ResponseEntities for all routes
                                 .andExpect(jsonPath("$.title").value("BBQ"));
