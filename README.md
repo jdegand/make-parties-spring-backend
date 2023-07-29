@@ -41,22 +41,20 @@ This is a conversion of a [past MakeSchool tutorial I completed](https://github.
 
 ## Thoughts 
 
-- Doing the mappings between entities is easy but there can be a few gotchas
+- Doing the mappings between entities is easy but there can be a few gotchas.
 - With Event and Rsvp, there exists a cyclic dependency and you get a stack overflow if you try to get Event - either use an annotation or a dto. See [Stack Overflow](https://stackoverflow.com/questions/61993704/stack-overflow-error-for-hibernate-one-to-one-mapping-with-spring-data-jpa) for more.  
-- Having to use DTOs with mappings (ManyToOne etc) is glossed over and obscured in a lot of implementations
-- Using DTOs requires extra work -> easier to create a bug
+- Having to use DTOs with mappings (ManyToOne etc) is glossed over and obscured in a lot of implementations.
+- Using DTOs requires extra work -> easier to create a bug.
 - @JsonBackReference can't be used on a collection.
 - Could add a third table for the list of rsvps -> @JoinTable
-- It can be annoying to use Integer in place of Long for ids as it can require extra work i.e. overriding method signatures
-- JPARepository works best with Long ids
-- Using Builder on an entity with a mapping warns - "@Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final." -> Because I set rsvps to an empty list I needed to use @Builder.Default annotation on rsvps 
-- Added takesPlaceOn to Event Entity (stretch challenge in original MakeSchool tutorial)
-- Added timestamps as well but I did not use them in the frontend
-- Added validation after I had the frontend working with the backend
+- Using Builder on an entity with a mapping warns - "@Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final." -> Because I set rsvps to an empty list, I needed to use @Builder.Default annotation on rsvps. 
+- Added takesPlaceOn to Event Entity (stretch challenge in original MakeSchool tutorial).
+- Added timestamps as well but I did not use them in the frontend.
+- Added validation after I had the frontend working with the backend.
 - The tutorial did not feature any validation.
 - I kept the validation fairly minimal -  a few required properties and date validation for takesPlaceOn.
 - In the entities, I used {entity}Id instead of just id.  This can be annoying and debatable if this is a good practice or not. 
-- Starting writing tests for the repository layer first then moved to the service layer and then finally the controller layer.  
+- Tests were written in this order: repository layer, service layer, controller layer.
 - I am not sure if it is truly necessary to test methods that just use JPARepository methods - seems redundant - this project didn't use any custom queries.
 - However, the repository tests are easy to write.
 - Had trouble with using Optional and thenReturn together in the EventService Tests - the commented out code seems like it should work but maybe I missed something - could be the return type of the function - ie Optional<Event> vs Event
