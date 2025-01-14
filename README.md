@@ -1,34 +1,34 @@
 # Make Parties Spring Backend
 
-This is a conversion of a [past MakeSchool tutorial I completed](https://github.com/jdegand/makeparties) to Spring Boot. 
+This is a conversion of a [past MakeSchool tutorial I completed](https://github.com/jdegand/makeparties) to Spring Boot.
 
 ## Screenshots
 
-![](screenshots/make-parties-spring-backend-1.png)
+![POST events](screenshots/make-parties-spring-backend-1.png)
 
 ***
 
-![](screenshots/make-parties-spring-backend-2.png)
+![POST rsvps](screenshots/make-parties-spring-backend-2.png)
 
 ***
 
-![](screenshots/make-parties-spring-backend-3.png)
+![GET events](screenshots/make-parties-spring-backend-3.png)
 
 ***
 
-![](screenshots/make-parties-spring-backend-4.png)
+![POST events](screenshots/make-parties-spring-backend-4.png)
 
 ***
 
-![](screenshots/make-parties-spring-backend-5.png)
+![DELETE events](screenshots/make-parties-spring-backend-5.png)
 
 ***
 
-![](screenshots/make-parties-spring-backend-6.png)
+![GET events](screenshots/make-parties-spring-backend-6.png)
 
 ***
 
-![](screenshots/make-parties-spring-backend-7.png)
+![PUT events](screenshots/make-parties-spring-backend-7.png)
 
 ***
 
@@ -39,34 +39,34 @@ This is a conversion of a [past MakeSchool tutorial I completed](https://github.
 - H2 Console
 - Lombok
 
-## Thoughts 
+## Thoughts
 
-- Doing the mappings between entities is easy but there can be a few gotchas.
+- Doing the mappings between entities is easy, but there can be a few gotchas.
 - With Event and Rsvp, there exists a cyclic dependency and you get a stack overflow if you try to get Event - either use an annotation or a dto. See [Stack Overflow](https://stackoverflow.com/questions/61993704/stack-overflow-error-for-hibernate-one-to-one-mapping-with-spring-data-jpa) for more.  
 - Having to use DTOs with mappings (ManyToOne etc) is glossed over and obscured in a lot of implementations.
 - Using DTOs requires extra work -> easier to create a bug.
-- @JsonBackReference can't be used on a collection.
-- Could add a third table for the list of rsvps -> @JoinTable
-- Using Builder on an entity with a mapping warns - "@Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final." -> Because I set rsvps to an empty list, I needed to use @Builder.Default annotation on rsvps. 
-- Added takesPlaceOn to Event Entity (stretch challenge in original MakeSchool tutorial).
+- `@JsonBackReference` can't be used on a collection.
+- Could add a third table for the list of rsvps -> `@JoinTable`
+- Using Builder on an entity with a mapping warns - "@Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final." -> Because I set rsvps to an empty list, I needed to use `@Builder.Default` annotation on rsvps.
+- Added `takesPlaceOn` to the `Event` entity (stretch challenge in original MakeSchool tutorial).
 - Added timestamps as well but I did not use them in the frontend.
 - Added validation after I had the frontend working with the backend.
 - The tutorial did not feature any validation.
 - I kept the validation fairly minimal -  a few required properties and date validation for takesPlaceOn.
-- In the entities, I used {entity}Id instead of just id.  This can be annoying and debatable if this is a good practice or not. 
-- Tests were written in this order: repository layer, service layer, controller layer.
+- In the entities, I used `{entity}Id` instead of just id.  This can be annoying and it is debatable if this is a good practice.
+- Tests were written in this order: repository layer, service layer, and controller layer.
 - I am not sure if it is truly necessary to test methods that just use JPARepository methods - seems redundant - this project didn't use any custom queries.
 - However, the repository tests are easy to write.
-- Had trouble with using Optional and thenReturn together in the EventService Tests - the commented out code seems like it should work but maybe I missed something - could be the return type of the function - ie Optional<Event> vs Event
-- You need to use assertAll() to handle void methods ie delete.
-- Not using response entities does create problems when testing error states in the controller layer because requests will fail without giving the appropriate status code.  You have to write more checks to test routes versus stopping after isBadRequest() etc. 
+- Had trouble with using `Optional` and `thenReturn` together in the EventService Tests - the commented out code seems like it should work but maybe I missed something - could be the return type of the function - i.e. `Optional<Event>` vs. `Event`
+- You need to use `assertAll()` to handle void methods ie delete.
+- Not using response entities does create problems when testing error states in the controller layer because requests will fail without giving the appropriate status code.  You have to write more checks to test routes versus stopping after `isBadRequest()`, etc.
 
 ## Continued Development
 
-- Use ResponseEntity for all routes?
-- Better exception handling / Custom exceptions
-- The validation for event put requests needs improvement - need to check takesPlaceOn is a valid date 
-- fetchEventById in the event service implementation could probably be refactored and done in a better way
+- Use `ResponseEntity` for all routes?
+- Better exception handling / custom exceptions
+- The validation for event put requests needs improvement. Need to check `takesPlaceOn` is a valid date.
+- `fetchEventById` in the event service implementation could probably be refactored and done in a better way
 
 ## Useful Resources
 
@@ -94,4 +94,4 @@ This is a conversion of a [past MakeSchool tutorial I completed](https://github.
 - [YouTube](https://www.youtube.com/watch?v=jqwZthuBmZY&list=PL82C6-O4XrHcg8sNwpoDDhcxUCbFy855E&index=1) - Spring Boot Unit Testing Tutorial (W/ Mockito)
 - [Stack Overflow](https://stackoverflow.com/questions/30946167/mockito-error-with-method-that-returns-optionalt) - mockito error with method that returns optional
 - [Baeldung](https://www.baeldung.com/java-init-list-one-line) - java init list one line
-- [YouTube](https://www.youtube.com/watch?v=XASyDbfQYaw) - Write Unit Test Case For Controller Layer using Junit & Mockito | @WebMvcTest |MockMvc
+- [YouTube](https://www.youtube.com/watch?v=XASyDbfQYaw) - Write Unit Test Case For Controller Layer using Junit & Mockito | @WebMvcTest | MockMvc
