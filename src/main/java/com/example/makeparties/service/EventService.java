@@ -7,13 +7,13 @@ import com.example.makeparties.entity.Event;
 import jakarta.persistence.EntityNotFoundException;
 
 public interface EventService {
-    public Event saveEvent(Event Event);
+    public Event saveEvent(Event event);
 
     public List<Event> fetchEventList();
 
-    public Event fetchEventById(Long EventId) throws EntityNotFoundException;
+    public Event fetchEventById(Long eventId) throws EntityNotFoundException;
 
-    public void deleteEventById(Long EventId);
+    public void deleteEventById(Long eventId);
 
-    public Event updateEvent(Long EventId, Event Event);
+    public Event updateEvent(Long eventId, Event event);
 }

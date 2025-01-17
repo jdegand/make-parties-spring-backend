@@ -30,7 +30,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Builder // can add builder just have to add @Builder.Default annotation to rsvps
 public class Event {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long eventId;
@@ -54,6 +54,6 @@ public class Event {
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     @Builder.Default
-    private List<Rsvp> rsvps = new ArrayList<Rsvp>();
+    private List<Rsvp> rsvps = new ArrayList<>();
 
 }

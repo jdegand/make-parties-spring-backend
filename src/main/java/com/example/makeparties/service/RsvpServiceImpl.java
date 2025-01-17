@@ -1,7 +1,5 @@
 package com.example.makeparties.service;
 
-//import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,32 +19,21 @@ public class RsvpServiceImpl implements RsvpService {
     private RsvpRepository rsvpRepository;
 
     @Override
-    public RsvpDto saveRsvp(Long EventId, RsvpDto rsvpDto) {
-
+    public RsvpDto saveRsvp(Long eventId, RsvpDto rsvpDto) {
         Rsvp rsvp = mapToEntity(rsvpDto);
-
-        Event event = eventRepository.findById(EventId).orElseThrow();
-     
+        Event event = eventRepository.findById(eventId).orElseThrow();
         rsvp.setEvent(event);
-
-        /*
-        Optional<Event> event = eventRepository.findById(EventId); //.orElseThrow();
-        rsvp.setEvent(event.get()); 
-        */
-
         Rsvp completeRsvp = rsvpRepository.save(rsvp);
-
         return mapToDto(completeRsvp);
     }
 
     @Override
-    public void deleteRsvpById(Long EventId, Long RsvpId) throws Exception {
-        Event event = eventRepository.findById(EventId).orElseThrow();
-
-        Rsvp rsvp = rsvpRepository.findById(RsvpId).orElseThrow();
+    public void deleteRsvpById(Long eventId, Long rsvpId) throws Exception {
+        Event event = eventRepository.findById(eventId).orElseThrow();
+        Rsvp rsvp = rsvpRepository.findById(rsvpId).orElseThrow();
 
         if(rsvp.getEvent().getEventId() != event.getEventId()) {
-            throw new Exception("This rsvp does not belong to a Event");
+            throw new Exception("This rsvp does not belong to a event");
         }
 
         rsvpRepository.delete(rsvp);
@@ -60,10 +47,10 @@ public class RsvpServiceImpl implements RsvpService {
         return rsvpDto;
     }
 
-    private Rsvp mapToEntity(RsvpDto RsvpDto) {
-        Rsvp Rsvp = new Rsvp();
-        Rsvp.setName(RsvpDto.getName());
-        Rsvp.setEmail(RsvpDto.getEmail());
-        return Rsvp;
+    private Rsvp mapToEntity(RsvpDto rsvpDto) {
+        Rsvp rsvp = new Rsvp();
+        rsvp.setName(rsvpDto.getName());
+        rsvp.setEmail(rsvpDto.getEmail());
+        return rsvp;
     }
 }

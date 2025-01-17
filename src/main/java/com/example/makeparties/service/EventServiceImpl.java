@@ -19,8 +19,8 @@ public class EventServiceImpl implements EventService {
     private EventRepository eventRepository;
 
     @Override
-    public Event saveEvent(Event Event) {
-        return eventRepository.save(Event);
+    public Event saveEvent(Event event) {
+        return eventRepository.save(event);
     }
 
     @Override
@@ -29,43 +29,43 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event fetchEventById(Long EventId) throws EntityNotFoundException {
-        Optional<Event> Event = eventRepository.findById(EventId);
+    public Event fetchEventById(Long eventId) throws EntityNotFoundException {
+        Optional<Event> event = eventRepository.findById(eventId);
 
-        if (!Event.isPresent()) {
+        if (!event.isPresent()) {
             throw new EntityNotFoundException("Event Not Available");
         }
 
-        return Event.get();
+        return event.get();
     }
 
     @Override
-    public void deleteEventById(Long EventId) {
-        eventRepository.deleteById(EventId);
+    public void deleteEventById(Long eventId) {
+        eventRepository.deleteById(eventId);
     }
 
     @Override
-    public Event updateEvent(Long EventId, Event Event) {
-        Event eventDB = eventRepository.findById(EventId).get();
+    public Event updateEvent(Long eventId, Event event) {
+        Event eventDB = eventRepository.findById(eventId).get();
 
-        if (Objects.nonNull(Event.getTitle()) &&
-                !"".equalsIgnoreCase(Event.getTitle())) {
-            eventDB.setTitle(Event.getTitle());
+        if (Objects.nonNull(event.getTitle()) &&
+                !"".equalsIgnoreCase(event.getTitle())) {
+            eventDB.setTitle(event.getTitle());
         }
 
-        if (Objects.nonNull(Event.getDesc()) &&
-                !"".equalsIgnoreCase(Event.getDesc())) {
-            eventDB.setDesc(Event.getDesc());
+        if (Objects.nonNull(event.getDesc()) &&
+                !"".equalsIgnoreCase(event.getDesc())) {
+            eventDB.setDesc(event.getDesc());
         }
 
-        if (Objects.nonNull(Event.getImgUrl()) &&
-                !"".equalsIgnoreCase(Event.getImgUrl())) {
-            eventDB.setImgUrl(Event.getImgUrl());
+        if (Objects.nonNull(event.getImgUrl()) &&
+                !"".equalsIgnoreCase(event.getImgUrl())) {
+            eventDB.setImgUrl(event.getImgUrl());
         }
 
         // need to look into checking a date in java
-        if (Objects.nonNull(Event.getTakesPlaceOn())) {
-            eventDB.setTakesPlaceOn(Event.getTakesPlaceOn());
+        if (Objects.nonNull(event.getTakesPlaceOn())) {
+            eventDB.setTakesPlaceOn(event.getTakesPlaceOn());
         }
 
         return eventRepository.save(eventDB);
